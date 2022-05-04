@@ -1,15 +1,16 @@
 import React from 'react';
 import { v4 } from 'uuid';
 
-import SectionPanelDetails from './sectionPanelDetails/SectionPanelDetails';
-import { SectionPanelType } from './SectionPanelType'
-
 import './SectionPanelStyle.scss';
+
+import SectionPanelDetails from './sectionPanelDetails/SectionPanelDetails';
+
+import { EditorType } from '../../logic/editorTypes'
 
 const SectionPanel = ({
     sectionTitle,
     items,
-}: SectionPanelType) => {
+}: EditorType) => {
     const renderItems = () => items.map(item => {
         return (
             <SectionPanelDetails

@@ -1,7 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import editorReducer from '../logic/editorSlice';
 
 export const store = configureStore({
   reducer: {
+      editor: editorReducer
   },
 });
 

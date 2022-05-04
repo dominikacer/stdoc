@@ -11,6 +11,8 @@
   font-weight: $font-weight-bold;
   font-size: $font-size-16;
   font-family: $font-family-headings;
+  cursor: pointer;
+  margin: $spacing-0 $spacing-0 $spacing-small;
 
   &--primary {
     background-color: $white-color;
