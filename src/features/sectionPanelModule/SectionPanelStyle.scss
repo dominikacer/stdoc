@@ -1,0 +1,25 @@
+@import '../../designSystem/colors';
+@import '../../designSystem/fonts';
+@import '../../designSystem/spacings';
+
+.section-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: $spacing-0 $spacing-0 $spacing-large;
+  font-family: $font-family-headings;
+
+  &__title {
+    color: $black-color;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-30;
+    padding: $spacing-medium $spacing-0;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

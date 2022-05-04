@@ -1,9 +1,25 @@
 import React from 'react';
+import { v4 } from 'uuid';
 
-export const MainContent = () => (
-    <div className="main-content layout__main-content">
-        main content
-    </div>
-);
+import SectionPanel from '../sectionPanelModule/SectionPanel';
+import './MainContentStyle.scss';
+import { temporaryData } from './temporaryData';
+
+const MainContent = () => {
+    const renderItems = () => temporaryData.map(section => {
+        return (
+            <SectionPanel
+                key={v4()}
+                sectionTitle={section.sectionTitle}
+                items={section.items}
+            />
+        )
+    });
+    return (
+        <div className="main-content layout__main-content">
+            {renderItems()}
+        </div>
+    )
+};
 
 export default MainContent;

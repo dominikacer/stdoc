@@ -1,3 +1,5 @@
+@import '../../designSystem/spacings';
+
 .header {
   text-align: center;
   height: 200px;
@@ -7,6 +9,6 @@
 
   &__logo {
     max-width: 300px;
-    padding: 40px 0;
+    padding: $spacing-large $spacing-0;
   }
 }

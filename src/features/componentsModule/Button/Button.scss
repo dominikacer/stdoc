@@ -1,13 +1,13 @@
 @import '../../../designSystem/colors';
 @import '../../../designSystem/fonts';
-
+@import '../../../designSystem/spacings';
 
 .button {
   outline: none;
   border: none;
   width: 100%;
-  padding: 20px;
   transition: all 0.3s ease;
+  padding: $spacing-medium;
   font-weight: $font-weight-bold;
   font-size: $font-size-16;
   font-family: $font-family-headings;
@@ -17,7 +17,7 @@
     color: $black-color;
 
     &:hover {
-      background-color: $main-color;
+      background-color: $accent-color;
       color: $white-color;
     }
   }
