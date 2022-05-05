@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 
-import { EditorType, InputValueType } from './editorTypes';
+import { EditorType, SectionTitleInputType, EditValueType } from './editorTypes';
 import { initialData } from './initialData';
 
 const initialState: EditorType[] = [
@@ -17,11 +17,16 @@ export const editorSlice = createSlice({
             initialDataCopy.index = state.length;
             state.push(initialDataCopy)
         },
-        editSection: (state, action: PayloadAction<number>) => {
-            console.warn(action);
+        editSection: (state, action: PayloadAction<EditValueType>) => {
+            state[action.payload.index].isDisabled = !action.payload.isDisabled;
         },
-        handleElementsChange: (state, action: PayloadAction<InputValueType>) => {
-            state[action.payload.index].sectionTitle = action.payload.value;
+        deleteSection: (state, action: PayloadAction<number>) => {
+            if (state.length > 1) {
+                state.splice(action.payload, 1);
+            }
+        },
+        saveSection: (state, action: any) => {
+            state[action.payload.index] = action.payload.value;
         },
         removeAllSections: (state) => {
             state.length = 1;
@@ -29,6 +34,8 @@ export const editorSlice = createSlice({
     },
 });
 
-export const { addNewSection, removeAllSections, handleElementsChange } = editorSlice.actions;
+export const {
+    addNewSection, removeAllSections, saveSection, editSection, deleteSection
+} = editorSlice.actions;
 export const getInitialData = (state: RootState) => state.editor;
 export default editorSlice.reducer;

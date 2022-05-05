@@ -9,6 +9,7 @@ const Button = (
         className = '',
         onClick,
         id,
+        isDisabled,
     } : ButtonState
 ) => (
     <button
@@ -17,6 +18,7 @@ const Button = (
         type="button"
         onClick={onClick}
         key={id}
+        disabled={isDisabled}
     >
         {children}
     </button>

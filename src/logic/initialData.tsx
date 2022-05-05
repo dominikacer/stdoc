@@ -7,15 +7,16 @@ export const initialData = {
             subtitle: 'Add here your additional text',
         },
         {
-            icon: 'icon-1',
+            icon: 'icon',
             title: 'Insert text here',
             subtitle: 'Add here your additional text',
         },
         {
-            icon: 'icon-2',
+            icon: 'icon',
             title: 'Insert text here',
             subtitle: 'Add here your additional text',
         }
     ],
     index: 0,
+    isDisabled: true,
 };

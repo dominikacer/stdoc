@@ -7,7 +7,7 @@ import './PrimaryInput.scss';
 const PrimaryInput = ({
     value,
     handleChangeAction,
-    isDisabled,
+    isDisabled = false,
     type,
     additionalClassName,
     name,

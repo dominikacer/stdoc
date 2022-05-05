@@ -1,0 +1,24 @@
+@import '../../../designSystem/colors';
+@import '../../../designSystem/fonts';
+@import '../../../designSystem/spacings';
+
+.section-panel-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__input {
+    font-size: $font-size-24;
+    padding: $spacing-large $spacing-0;
+    margin: $spacing-small;
+    font-weight: $font-weight-bold;
+    border: 1px solid $black-color;
+    width: calc(100% - 20px);
+    overflow: scroll;
+  }
+
+  &__subtitle {
+    font-size: $font-size-14;
+  }
+}

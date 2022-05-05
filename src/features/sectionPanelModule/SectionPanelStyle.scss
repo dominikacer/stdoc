@@ -15,10 +15,9 @@
   border: 1px solid black;
 
   &__title {
-    color: $black-color;
     font-weight: $font-weight-bold;
     font-size: $font-size-30;
-    padding: $spacing-medium $spacing-0;
+    padding: $spacing-large $spacing-0;
   }
 
   &__content {

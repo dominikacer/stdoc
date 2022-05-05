@@ -3,4 +3,5 @@ export interface ButtonState {
     className?: string;
     onClick: () => void;
     id: string;
+    isDisabled: boolean;
 }
