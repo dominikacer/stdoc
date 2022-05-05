@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { MdEdit, MdDeleteForever, MdSave } from "react-icons/md";
 import { useAppDispatch } from '../../app/hooks';
 
 import PrimaryInput from '../componentsModule/PrimaryInput/PrimaryInput';
 import SectionPanelDetails from './SectionPanelDetails/SectionPanelDetails';
+import SectionPanelButtons from './SectionPanelButtons/SectionPanelButtons';
 import './SectionPanelStyle.scss';
 
 import { EditorType } from '../../logic/editorTypes'
@@ -23,8 +23,9 @@ const SectionPanel = ({
         index,
         isDisabled,
     });
+    const [columnOrder, handleColumnOrder] = useState(123);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setNewObject({
             ...newObject,
             sectionTitle: e.target.value,
@@ -68,50 +69,42 @@ const SectionPanel = ({
         dispatch(deleteSection(index))
     };
 
-    const renderItems = () => items.map((item, columnIndex) => {
-        return (
-            <SectionPanelDetails
-                icon={item.icon}
-                title={item.title}
-                subtitle={item.subtitle}
-                columnIndex={columnIndex}
-                isDisabled={isDisabled}
-                handleRowDetailsChange={handleRowDetailsChange}
-            />
-        )
-    });
+    const handleOrder = (orderData: number) => {
+        handleColumnOrder(orderData)
+    };
+
 
     return (
       <div className="section-panel">
           <PrimaryInput
               isDisabled={isDisabled}
-              handleChangeAction={handleChange}
+              handleChangeAction={handleTitleChange}
               additionalClassName="section-panel__title"
               value={newObject.sectionTitle}
               type="text"
               name="sectionTitle"
           />
-          <div className="section-panel__content">
-              {renderItems()}
+          <div className={`section-panel__content section-panel__content--${columnOrder}`}>
+              {items.map((item, columnIndex) => {
+                  return (
+                      <SectionPanelDetails
+                          icon={item.icon}
+                          title={item.title}
+                          subtitle={item.subtitle}
+                          columnIndex={columnIndex}
+                          isDisabled={isDisabled}
+                          handleRowDetailsChange={handleRowDetailsChange}
+                      />
+                  )
+              })}
           </div>
-          <div className="section-panel__buttons">
-              {isDisabled && (
-                  <MdEdit
-                      className="section-panel__single-button"
-                      onClick={handleEdit}
-                  />
-              )}
-              {!isDisabled && (
-                  <MdSave
-                      className="section-panel__single-button"
-                      onClick={handleSave}
-                  />
-              )}
-              <MdDeleteForever
-                  className="section-panel__single-button"
-                  onClick={handleDelete}
-              />
-          </div>
+          <SectionPanelButtons
+              handleEdit={handleEdit}
+              handleSave={handleSave}
+              handleDelete={handleDelete}
+              handleOrder={handleOrder}
+              isDisabled={isDisabled}
+          />
       </div>
     )
 };

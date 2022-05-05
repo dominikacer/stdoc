@@ -29,7 +29,10 @@ export interface EditValueType {
     isDisabled: boolean,
 }
 
-export interface ItemsType {
-    items: Array<EditorDetailsType>,
-    sectionIndex?: number,
+export interface SectionPanelButtonsType {
+    isDisabled: boolean,
+    handleEdit: () => void,
+    handleSave: () => void,
+    handleDelete: () => void,
+    handleOrder: (order: number) => void,
 }
