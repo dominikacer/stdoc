@@ -1,5 +1,5 @@
 import React from 'react';
-import {MdDeleteForever, MdEdit, MdSave} from "react-icons/md";
+import { MdDeleteForever, MdEdit, MdSave } from "react-icons/md";
 
 import { SectionPanelButtonsType } from '../../../logic/editorTypes';
 import './SectionPanelButtons.scss';
