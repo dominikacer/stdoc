@@ -1,6 +1,6 @@
 import React from 'react';
 import { v4 } from 'uuid';
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { useAppSelector } from '../../app/hooks';
 
 import SectionPanel from '../sectionPanelModule/SectionPanel';
 import './MainContentStyle.scss';
@@ -10,12 +10,13 @@ import { EditorType } from '../../logic/editorTypes';
 
 const MainContent = () => {
     const initialData: EditorType[] = useAppSelector(getInitialData);
-    const renderItems = () => initialData.map(section => {
+    const renderItems = () => initialData.map((section) => {
         return (
             <SectionPanel
                 key={v4()}
                 sectionTitle={section.sectionTitle}
                 items={section.items}
+                index={section.index}
             />
         )
     });

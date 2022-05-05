@@ -16,5 +16,6 @@ export const initialData = {
             title: 'Insert text here',
             subtitle: 'Add here your additional text',
         }
-    ]
-}
+    ],
+    index: 0,
+};

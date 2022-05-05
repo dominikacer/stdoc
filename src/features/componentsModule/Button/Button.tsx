@@ -1,13 +1,7 @@
 import React from 'react';
 
+import { ButtonState } from './ButtonType';
 import './Button.scss';
-
-interface ButtonState {
-    children: React.ReactNode;
-    className?: string;
-    onClick: () => void;
-    id: string;
-}
 
 const Button = (
     {

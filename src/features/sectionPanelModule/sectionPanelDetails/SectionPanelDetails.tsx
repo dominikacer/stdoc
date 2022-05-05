@@ -8,11 +8,21 @@ const SectionPanelDetails = ({
     icon,
     title,
     subtitle,
+    index,
 } : EditorDetailsType) => (
     <div className="section-panel-details">
-        <div className="section-panel-details__icon">{icon}</div>
-        <div className="section-panel-details__title">{title}</div>
-        <div className="section-panel-details__subtitle">{subtitle}</div>
+        <input
+            className="section-panel-details__icon"
+            value={icon}
+        />
+        <input
+            className="section-panel-details__title"
+            value={title}
+        />
+        <input
+            className="section-panel-details__subtitle"
+            value={subtitle}
+        />
     </div>
 );
 

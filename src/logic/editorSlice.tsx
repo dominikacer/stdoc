@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 
-import { EditorType } from './editorTypes';
+import { EditorType, InputValueType } from './editorTypes';
 import { initialData } from './initialData';
 
 const initialState: EditorType[] = [
@@ -13,10 +13,15 @@ export const editorSlice = createSlice({
     initialState,
     reducers: {
         addNewSection: (state) => {
-            state.push(initialData)
+            const initialDataCopy = Object.assign({},initialData);
+            initialDataCopy.index = state.length;
+            state.push(initialDataCopy)
         },
         editSection: (state, action: PayloadAction<number>) => {
             console.warn(action);
+        },
+        handleElementsChange: (state, action: PayloadAction<InputValueType>) => {
+            state[action.payload.index].sectionTitle = action.payload.value;
         },
         removeAllSections: (state) => {
             state.length = 1;
@@ -24,6 +29,6 @@ export const editorSlice = createSlice({
     },
 });
 
-export const { addNewSection, removeAllSections } = editorSlice.actions;
+export const { addNewSection, removeAllSections, handleElementsChange } = editorSlice.actions;
 export const getInitialData = (state: RootState) => state.editor;
 export default editorSlice.reducer;
