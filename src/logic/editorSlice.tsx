@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 
-import { EditorType, SectionTitleInputType, EditValueType } from './editorTypes';
+import { EditorType, SaveContentType, EditValueType } from './editorTypes';
 import { initialData } from './initialData';
 
 const initialState: EditorType[] = [
@@ -25,7 +25,7 @@ export const editorSlice = createSlice({
                 state.splice(action.payload, 1);
             }
         },
-        saveSection: (state, action: any) => {
+        saveSection: (state, action: PayloadAction<SaveContentType>) => {
             state[action.payload.index] = action.payload.value;
         },
         removeAllSections: (state) => {

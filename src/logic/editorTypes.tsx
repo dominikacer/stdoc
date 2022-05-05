@@ -19,14 +19,19 @@ export interface EditorType {
     isDisabled: boolean,
 }
 
-export interface SectionTitleInputType {
-    value: string,
-    index: number,
-}
-
 export interface EditValueType {
     index: number,
     isDisabled: boolean,
+}
+
+export interface SaveContentType {
+    index: number,
+    value: EditorType
+}
+
+export interface SectionTitleInputType {
+    value: string,
+    index: number,
 }
 
 export interface SectionPanelButtonsType {
