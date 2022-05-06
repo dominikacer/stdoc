@@ -26,7 +26,7 @@ export const editorSlice = createSlice({
 
         },
         deleteSection: (state, action: PayloadAction<string>) => {
-            return state.filter(el => el.id === action.payload);
+            return state.filter(el => el.id !== action.payload);
         },
         saveSection: (state, action: PayloadAction<SaveContentType>) => {
             let currentElement = state.find(el => el.id === action.payload.id);
