@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface EditorDetailsType {
     icon: string,
     title: string,
@@ -15,23 +13,18 @@ export interface ColumnDetailsType extends EditorDetailsType {
 export interface EditorType {
     sectionTitle: string,
     items: EditorDetailsType[],
-    index: number,
     isDisabled: boolean,
+    id: string,
 }
 
 export interface EditValueType {
-    index: number,
+    id: string,
     isDisabled: boolean,
 }
 
 export interface SaveContentType {
-    index: number,
+    id: string,
     value: EditorType
-}
-
-export interface SectionTitleInputType {
-    value: string,
-    index: number,
 }
 
 export interface SectionPanelButtonsType {

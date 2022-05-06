@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
+import { v4 } from 'uuid';
 
 import { EditorType, SaveContentType, EditValueType } from './editorTypes';
 import { initialData } from './initialData';
@@ -14,19 +15,24 @@ export const editorSlice = createSlice({
     reducers: {
         addNewSection: (state) => {
             const initialDataCopy = Object.assign({},initialData);
-            initialDataCopy.index = state.length;
-            state.push(initialDataCopy)
+            initialDataCopy.id = v4();
+            state.push(initialDataCopy);
         },
         editSection: (state, action: PayloadAction<EditValueType>) => {
-            state[action.payload.index].isDisabled = !action.payload.isDisabled;
-        },
-        deleteSection: (state, action: PayloadAction<number>) => {
-            if (state.length > 1) {
-                state.splice(action.payload, 1);
+            const currentElement = state.find(el => el.id === action.payload.id);
+            if (currentElement) {
+                currentElement.isDisabled = !action.payload.isDisabled;
             }
+
+        },
+        deleteSection: (state, action: PayloadAction<string>) => {
+            return state.filter(el => el.id === action.payload);
         },
         saveSection: (state, action: PayloadAction<SaveContentType>) => {
-            state[action.payload.index] = action.payload.value;
+            let currentElement = state.find(el => el.id === action.payload.id);
+            if (currentElement) {
+                currentElement = action.payload.value;
+            }
         },
         removeAllSections: (state) => {
             state.length = 1;

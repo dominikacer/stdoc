@@ -12,16 +12,16 @@ import ColumnPropertiesEnum  from '../../enums/ColumnPropertiesEnum';
 
 const SectionPanel = ({
     sectionTitle,
-    index,
     isDisabled,
     items,
+    id,
 }: EditorType) => {
     const dispatch = useAppDispatch();
     const [newObject, setNewObject] = useState({
         sectionTitle,
         items,
-        index,
         isDisabled,
+        id,
     });
     const [columnOrder, handleColumnOrder] = useState(123);
 
@@ -49,24 +49,24 @@ const SectionPanel = ({
 
     const handleEdit = () => {
         dispatch(editSection({
-            index,
+            id,
             isDisabled,
         }))
     };
 
     const handleSave = () => {
         dispatch(saveSection({
-            index,
+            id,
             value: newObject,
         }));
         dispatch(editSection({
-            index,
+            id,
             isDisabled,
         }))
     };
 
     const handleDelete = () => {
-        dispatch(deleteSection(index))
+        dispatch(deleteSection(id))
     };
 
     const handleOrder = (orderData: number) => {
@@ -88,6 +88,7 @@ const SectionPanel = ({
               {items.map((item, columnIndex) => {
                   return (
                       <SectionPanelDetails
+                          key={`${id}-${columnIndex}`}
                           icon={item.icon}
                           title={item.title}
                           subtitle={item.subtitle}

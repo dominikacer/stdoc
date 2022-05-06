@@ -1,7 +1,6 @@
 import React, {useRef} from 'react';
 import Pdf from 'react-to-pdf';
 import { MdPictureAsPdf } from "react-icons/md";
-import { v4 } from 'uuid';
 import { useAppSelector } from '../../app/hooks';
 
 import SectionPanel from '../sectionPanelModule/SectionPanel';
@@ -17,11 +16,11 @@ const MainContent = () => {
     const renderItems = () => initialData.map((section) => {
         return (
             <SectionPanel
-                key={v4()}
+                key={section.id}
                 sectionTitle={section.sectionTitle}
                 items={section.items}
-                index={section.index}
                 isDisabled={section.isDisabled}
+                id={section.id}
             />
         )
     });

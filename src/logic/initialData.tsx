@@ -17,6 +17,6 @@ export const initialData = {
             subtitle: 'Add here your additional text',
         }
     ],
-    index: 0,
     isDisabled: true,
+    id: '25375-24456-42457-8999'
 };
