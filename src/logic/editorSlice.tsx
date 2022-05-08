@@ -34,6 +34,12 @@ export const editorSlice = createSlice({
                 currentElement = action.payload.value;
             }
         },
+        saveIcon: (state, action) => {
+            const currentElement = state.find(el => el.id === action.payload.id);
+            if (currentElement) {
+                currentElement.items[action.payload.columnIndex].icon = action.payload.changedIcon
+            }
+        },
         removeAllSections: (state) => {
             state.length = 1;
         }
@@ -41,7 +47,7 @@ export const editorSlice = createSlice({
 });
 
 export const {
-    addNewSection, removeAllSections, saveSection, editSection, deleteSection
+    addNewSection, removeAllSections, saveSection, editSection, deleteSection, saveIcon
 } = editorSlice.actions;
 export const getInitialData = (state: RootState) => state.editor;
 export default editorSlice.reducer;

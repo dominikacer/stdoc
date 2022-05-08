@@ -4,6 +4,7 @@ import { useAppDispatch } from '../../app/hooks';
 import PrimaryInput from '../componentsModule/PrimaryInput/PrimaryInput';
 import SectionPanelDetails from './SectionPanelDetails/SectionPanelDetails';
 import SectionPanelButtons from './SectionPanelButtons/SectionPanelButtons';
+
 import './SectionPanelStyle.scss';
 
 import { EditorType } from '../../logic/editorTypes'
@@ -95,6 +96,7 @@ const SectionPanel = ({
                           columnIndex={columnIndex}
                           isDisabled={isDisabled}
                           handleRowDetailsChange={handleRowDetailsChange}
+                          id={id}
                       />
                   )
               })}

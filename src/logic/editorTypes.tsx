@@ -8,6 +8,7 @@ export interface ColumnDetailsType extends EditorDetailsType {
     isDisabled: boolean,
     columnIndex: number,
     handleRowDetailsChange: Function,
+    id: string,
 }
 
 export interface EditorType {

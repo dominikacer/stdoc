@@ -2,17 +2,17 @@ export const initialData = {
     sectionTitle: 'Insert a title here',
     items: [
         {
-            icon: 'icon',
+            icon: 'MdAccountCircle',
             title: 'Insert text here',
             subtitle: 'Add here your additional text',
         },
         {
-            icon: 'icon',
+            icon: 'MdAdb',
             title: 'Insert text here',
             subtitle: 'Add here your additional text',
         },
         {
-            icon: 'icon',
+            icon: 'MdAccessibility',
             title: 'Insert text here',
             subtitle: 'Add here your additional text',
         }
