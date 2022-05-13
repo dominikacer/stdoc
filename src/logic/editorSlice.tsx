@@ -2,8 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 import { v4 } from 'uuid';
 
-import { EditorType, SaveContentType, EditValueType } from './editorTypes';
+import { EditorType } from './editorTypes';
 import { initialData } from './initialData';
+import ColumnPropertiesEnum  from '../enums/ColumnPropertiesEnum';
 
 const initialState: EditorType[] = [
     initialData,
@@ -18,21 +19,8 @@ export const editorSlice = createSlice({
             initialDataCopy.id = v4();
             state.push(initialDataCopy);
         },
-        editSection: (state, action: PayloadAction<EditValueType>) => {
-            const currentElement = state.find(el => el.id === action.payload.id);
-            if (currentElement) {
-                currentElement.isDisabled = !action.payload.isDisabled;
-            }
-
-        },
         deleteSection: (state, action: PayloadAction<string>) => {
             return state.filter(el => el.id !== action.payload);
-        },
-        saveSection: (state, action: PayloadAction<SaveContentType>) => {
-            let currentElement = state.find(el => el.id === action.payload.id);
-            if (currentElement) {
-                currentElement = action.payload.value;
-            }
         },
         saveIcon: (state, action) => {
             const currentElement = state.find(el => el.id === action.payload.id);
@@ -41,13 +29,35 @@ export const editorSlice = createSlice({
             }
         },
         removeAllSections: (state) => {
-            state.length = 1;
-        }
+            state.length = 0;
+        },
+        saveInputValue: (state, action) => {
+            const currentElement = state.find(el => el.id === action.payload.id);
+            if (currentElement) {
+                switch (action.payload.type) {
+                    case ColumnPropertiesEnum.sectionTitle:
+                        currentElement.sectionTitle = action.payload.value;
+                        break;
+                    case ColumnPropertiesEnum.title:
+                        currentElement.items[action.payload.columnIndex].title = action.payload.value;
+                        break;
+                    case ColumnPropertiesEnum.subtitle:
+                        currentElement.items[action.payload.columnIndex].subtitle = action.payload.value;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        },
     },
 });
 
 export const {
-    addNewSection, removeAllSections, saveSection, editSection, deleteSection, saveIcon
+    addNewSection,
+    removeAllSections,
+    deleteSection,
+    saveIcon,
+    saveInputValue,
 } = editorSlice.actions;
 export const getInitialData = (state: RootState) => state.editor;
 export default editorSlice.reducer;

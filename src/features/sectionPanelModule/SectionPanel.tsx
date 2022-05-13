@@ -8,62 +8,22 @@ import SectionPanelButtons from './SectionPanelButtons/SectionPanelButtons';
 import './SectionPanelStyle.scss';
 
 import { EditorType } from '../../logic/editorTypes'
-import { saveSection, editSection, deleteSection } from '../../logic/editorSlice';
-import ColumnPropertiesEnum  from '../../enums/ColumnPropertiesEnum';
+import { deleteSection, saveInputValue } from '../../logic/editorSlice';
 
 const SectionPanel = ({
     sectionTitle,
-    isDisabled,
     items,
     id,
 }: EditorType) => {
     const dispatch = useAppDispatch();
-    const [newObject, setNewObject] = useState({
-        sectionTitle,
-        items,
-        isDisabled,
-        id,
-    });
     const [columnOrder, handleColumnOrder] = useState(123);
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setNewObject({
-            ...newObject,
-            sectionTitle: e.target.value,
-        })
-    };
-    const handleRowDetailsChange = (e: React.ChangeEvent<HTMLInputElement>, cIndex: number) => {
-        const shallowCopyObj = JSON.parse(JSON.stringify(newObject));
-        const targetName = e.target.name;
-        const targetValue = e.target.value;
-        if (targetName === ColumnPropertiesEnum.icon) {
-            shallowCopyObj.items[cIndex].icon = targetValue;
-        }
-        if (targetName === ColumnPropertiesEnum.title) {
-            shallowCopyObj.items[cIndex].title = targetValue;
-        }
-        if (targetName === ColumnPropertiesEnum.subtitle) {
-            shallowCopyObj.items[cIndex].subtitle = targetValue;
-        }
-        setNewObject(shallowCopyObj);
-    };
-
-    const handleEdit = () => {
-        dispatch(editSection({
+        dispatch(saveInputValue({
+            value: e.target.value,
+            type: e.target.name,
             id,
-            isDisabled,
-        }))
-    };
-
-    const handleSave = () => {
-        dispatch(saveSection({
-            id,
-            value: newObject,
         }));
-        dispatch(editSection({
-            id,
-            isDisabled,
-        }))
     };
 
     const handleDelete = () => {
@@ -74,14 +34,12 @@ const SectionPanel = ({
         handleColumnOrder(orderData)
     };
 
-
     return (
       <div className="section-panel">
           <PrimaryInput
-              isDisabled={isDisabled}
               handleChangeAction={handleTitleChange}
               additionalClassName="section-panel__title"
-              value={newObject.sectionTitle}
+              value={sectionTitle}
               type="text"
               name="sectionTitle"
           />
@@ -94,19 +52,14 @@ const SectionPanel = ({
                           title={item.title}
                           subtitle={item.subtitle}
                           columnIndex={columnIndex}
-                          isDisabled={isDisabled}
-                          handleRowDetailsChange={handleRowDetailsChange}
                           id={id}
                       />
                   )
               })}
           </div>
           <SectionPanelButtons
-              handleEdit={handleEdit}
-              handleSave={handleSave}
               handleDelete={handleDelete}
               handleOrder={handleOrder}
-              isDisabled={isDisabled}
           />
       </div>
     )

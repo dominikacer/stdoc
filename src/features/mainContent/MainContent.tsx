@@ -19,7 +19,6 @@ const MainContent = () => {
                 key={section.id}
                 sectionTitle={section.sectionTitle}
                 items={section.items}
-                isDisabled={section.isDisabled}
                 id={section.id}
             />
         )

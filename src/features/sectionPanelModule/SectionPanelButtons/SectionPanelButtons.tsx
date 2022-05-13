@@ -1,31 +1,16 @@
 import React from 'react';
-import { MdDeleteForever, MdEdit, MdSave } from "react-icons/md";
+import { MdDeleteForever } from "react-icons/md";
 
 import { SectionPanelButtonsType } from '../../../logic/editorTypes';
 import './SectionPanelButtons.scss';
 
 const SectionPanelButtons = ({
-    isDisabled,
-    handleEdit,
-    handleSave,
     handleDelete,
     handleOrder,
  }: SectionPanelButtonsType) => {
     return (
         <div className="section-panel-buttons">
            <div className="section-panel-buttons__top-section">
-               {isDisabled && (
-                   <MdEdit
-                       className="section-panel-buttons__top-section__button"
-                       onClick={handleEdit}
-                   />
-               )}
-               {!isDisabled && (
-                   <MdSave
-                       className="section-panel-buttons__top-section__button"
-                       onClick={handleSave}
-                   />
-               )}
                <MdDeleteForever
                    className="section-panel-buttons__top-section__button"
                    onClick={handleDelete}

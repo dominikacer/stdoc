@@ -4,8 +4,9 @@ import { useAppDispatch } from '../../../app/hooks';
 import { ColumnDetailsType } from '../../../logic/editorTypes';
 import './SectionPanelDetails.scss';
 import SectionPanelIcons from "./SectionPanelIcons/SectionPanelIcons";
+import PrimaryInput from '../../componentsModule/PrimaryInput/PrimaryInput';
 
-import { saveIcon } from '../../../logic/editorSlice';
+import { saveIcon, saveInputValue } from '../../../logic/editorSlice';
 import { generatedIcons } from '../../../helpers/iconsHelper';
 
 const SectionPanelDetails = ({
@@ -13,8 +14,6 @@ const SectionPanelDetails = ({
     title,
     subtitle,
     columnIndex,
-    isDisabled,
-    handleRowDetailsChange,
     id,
 }: ColumnDetailsType) => {
     const [isPopupVisible, setPopupVisibility] = useState(false);
@@ -28,16 +27,21 @@ const SectionPanelDetails = ({
                     key={name}
                     className="icons-popup__icon"
                     data-name={name}
-                    onClick={() => {
-                        if (isDisabled) {
-                            return;
-                        }
-                        setPopupVisibility(true)
-                }}>
+                    onClick={() => setPopupVisibility(true)}
+                >
                     <Icon />
                 </div>
             )
         });
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(saveInputValue({
+            value: e.target.value,
+            type: e.target.name,
+            id,
+            columnIndex,
+        }));
     };
 
     const handleIconChange = (changedIcon) => {
@@ -57,24 +61,22 @@ const SectionPanelDetails = ({
                 isPopupVisible={isPopupVisible}
             />
             {renderIcon(icon)}
-            <input
-                className="section-panel-details__input section-panel-details__title"
+            <PrimaryInput
+                additionalClassName="section-panel-details__input section-panel-details__title"
                 name="title"
                 type="text"
-                defaultValue={title}
-                disabled={isDisabled}
-                onChange={(e) => handleRowDetailsChange(e, columnIndex)}
+                value={title}
+                handleChangeAction={handleChange}
             />
-            <input
-                className="section-panel-details__input section-panel-details__subtitle"
+            <PrimaryInput
+                additionalClassName="section-panel-details__input section-panel-details__subtitle"
                 name="subtitle"
                 type="text"
-                defaultValue={subtitle}
-                disabled={isDisabled}
-                onChange={(e) => handleRowDetailsChange(e, columnIndex)}
+                value={subtitle}
+                handleChangeAction={handleChange}
             />
         </div>
     )
-}
+};
 
 export default SectionPanelDetails;

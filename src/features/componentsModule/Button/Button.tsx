@@ -9,7 +9,7 @@ const Button = (
         className = '',
         onClick,
         id,
-        isDisabled,
+        isDisabled = false,
     } : ButtonState
 ) => (
     <button
